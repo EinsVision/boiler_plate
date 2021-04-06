@@ -1,4 +1,6 @@
-// back-end 시작점!
+// back-end 시작점!! 
+// 1. node js download
+// 2. express js download  ( 5: 55)
 
 const express = require('express') // express module을 가져옴
 const app = express() // 새로운 express app을 만든다.
