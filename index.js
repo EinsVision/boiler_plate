@@ -29,7 +29,7 @@ mongoose.connect('mongodb+srv://jcdlove:abcd1234@cluster0.2rf61.mongodb.net/myFi
   .catch(error => console.log(error));
 
 app.get('/', (req, res) => {
-  res.send('Hello World! from Express JS')
+  res.send('Hello World! from Express JS (boiler plate)')
 })
 
 app.post('/register', (req, res) => {
