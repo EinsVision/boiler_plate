@@ -23,7 +23,7 @@ const mongoose = require('mongoose');
 // }).then(()=> console.log("MongoDB connected... "))
 //   .catch(err=>console.log(err))
 
-mongoose.connect('mongodb+srv://jcdlove:abcd1234@cluster0.2rf61.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+mongoose.connect(config.mongoURI, {
   useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false
 }).then(()=> console.log("mongoose.connect :: MongoDB connected ! "))
   .catch(error => console.log(error));
