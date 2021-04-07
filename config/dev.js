@@ -1,3 +1,3 @@
 module.exports={
-    mongoURL:'mongodb+srv://changdae:abcd1234@reactblog.k6uku.mongodb.net/<dbname>?retryWrites=true&w=majority'
+    mongoURL:'mongodb+srv://jcdlove:abcd1234@cluster0.2rf61.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 }

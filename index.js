@@ -17,10 +17,15 @@ app.use(bodyParser.json());
 
 // MongoDB connection
 const mongoose = require('mongoose');
-mongoose.connect(config.mongoURI, {
-    useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false
-}).then(()=> console.log("MongoDB connected... "))
-  .catch(err=>console.log(err))
+// mongoose.connect(config.mongoURI, {
+//     useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false
+// }).then(()=> console.log("MongoDB connected... "))
+//   .catch(err=>console.log(err))
+
+mongoose.connect('mongodb+srv://jcdlove:abcd1234@cluster0.2rf61.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {
+  useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false
+}).then(()=> console.log("mongoose.connect :: MongoDB connected ! "))
+  .catch(error => console.log(error));
 
 app.get('/', (req, res) => {
   res.send('Hello World! from Express JS')
@@ -39,6 +44,6 @@ app.post('/register', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`app.liste :: Example app listening at http://localhost:${port}`)
+  console.log(`app.listen :: Example app listening at http://localhost:${port}`)
 })
 
