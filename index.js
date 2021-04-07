@@ -11,10 +11,12 @@ const { User } = require("./models/User");
 const bodyParser = require("body-parser");
 
 const config = require('./config/key');
+const cookieParser = require('cookie-parser'); // token을 cookie에 넣어준다.
 
 // 받아온 정보들을 parsing 한다.
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
+app.use(cookieParser());
 
 // MongoDB connection
 const mongoose = require('mongoose');
@@ -71,15 +73,19 @@ app.post('/login', (req, res) => {
       }
       // 3. 비밀번호가 맞다면, user를 위한 token을 생성한다.
       user.generateToken((err, user) => {
-        
+        if(err) {
+          return res.status(400).send(err);
+        }
+
+        // token을 저장한다. 
+        res.cookie("x_auth", user.token)
+        .status(200)
+        .json({ loginSuccess: true, userId: user._id})
       })
 
     })
   })
 
- 
-
-  
 })
 
 app.listen(port, () => {
