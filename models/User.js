@@ -90,5 +90,13 @@ userSchema.methods.generateToken = function(cb) {
   })
 }
 
+userSchema.statics.findByToken = function( token, cb) {
+  const user = this;
+  // token decoding 
+  jwt.verify(token, 'secretToken', function(err, decode) {
+    
+  })
+}
+
 const User = mongoose.model('User', userSchema); // Model을 schema로 감싼다.
 module.exports = { User };

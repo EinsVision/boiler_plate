@@ -13,6 +13,8 @@ const bodyParser = require("body-parser");
 const config = require('./config/key');
 const cookieParser = require('cookie-parser'); // token을 cookie에 넣어준다.
 
+const { auth } = require('./middleware/auth');
+
 // 받아온 정보들을 parsing 한다.
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
@@ -20,10 +22,6 @@ app.use(cookieParser());
 
 // MongoDB connection
 const mongoose = require('mongoose');
-// mongoose.connect(config.mongoURI, {
-//     useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false
-// }).then(()=> console.log("MongoDB connected... "))
-//   .catch(err=>console.log(err))
 
 mongoose.connect(config.mongoURI, {
   useNewUrlParser: true, useUnifiedTopology:true, useCreateIndex: true, useFindAndModify: false
@@ -34,7 +32,7 @@ app.get('/', (req, res) => {
   res.send('Hello World! from Express JS (boiler plate)')
 })
 
-app.post('/register', (req, res) => {
+app.post('/api/users/register', (req, res) => {
     // 회원 가입할 때 필요한 정보들을 client 에서 가져오면 
     // 그것들을 DB에 넣어준다.
     const user = new User(req.body);
@@ -53,7 +51,7 @@ app.post('/register', (req, res) => {
     });
 })
 
-app.post('/login', (req, res) => {
+app.post('/api/users/login', (req, res) => {
   // 1. 요청된 이메일을 db에 있는지 찾는다.
   User.findOne({ email: req.body.email }, (err, user) => {
     if(!user) {
@@ -82,9 +80,11 @@ app.post('/login', (req, res) => {
         .status(200)
         .json({ loginSuccess: true, userId: user._id})
       })
-
     })
   })
+})
+
+app.get('/api/users/auth', auth,(req, res) => {
 
 })
 
