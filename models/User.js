@@ -1,5 +1,9 @@
 const mongoose = require('mongoose');
 // Schema: 각 각의 정보를 변경할 수 있는 요소 
+
+const bcrypt = require('bcrypt'); // 비밀번호를 암호화 한다.
+const saltRounds = 10;
+
 const userSchema = mongoose.Schema({
     name: {
         type: String,
@@ -33,6 +37,27 @@ const userSchema = mongoose.Schema({
         type: Number
         // token 유효기간을 설정한다.
     }
+})
+
+userSchema.pre('save', function( next ) {
+
+  const user = this;
+
+  // 비밀번호를 암호화 시킨다.
+  if(user.isModified('password')) { // password가 변경될 때만 암호화를 한다.
+    bcrypt.genSalt(saltRounds, function(err, salt) {
+      if(err) {
+        return next(err);
+      }                                             // hash가 암호화된 비밀번호이다.
+      bcrypt.hash( user.password, salt, function(err, hash) {
+        if(err) {
+          return next(err);
+        }
+        user.password = hash; // hash로 암호화된 비밀번호가 생성되면 password 를 교체해준다.
+        next();
+      })
+    })
+  }
 })
 
 const User = mongoose.model('User', userSchema); // Model을 schema로 감싼다.

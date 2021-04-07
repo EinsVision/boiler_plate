@@ -37,12 +37,17 @@ app.post('/register', (req, res) => {
     // 그것들을 DB에 넣어준다.
     const user = new User(req.body);
 
+    // save 하기 전에 password를 암호화 해준다. bcrpyt 사용해서 한다.
+    // User.js 에서 userSchema.pre('save', function() { ... } 를 사용한다. 
+
+
     // save <--- mongo db 에서 온 method 이다.
+    // next() 이후에 user.save로 들어 온다.
     user.save((err, userInfo)=>{
-        if(err){
-            return res.json({ success: false, err });
-        }
-        return res.status(200).json({ success: true });    
+      if(err){
+          return res.json({ success: false, err });
+      }
+      return res.status(200).json({ success: true });    
     });
 })
 
