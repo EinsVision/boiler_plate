@@ -7,13 +7,13 @@ const express = require('express'); // express module을 가져옴
 const app = express(); // 새로운 express app을 만든다.
 const port = 5000;
 
-const { User } = require("./models/User");
+const { User } = require("./server/models/User");
 const bodyParser = require("body-parser");
 
-const config = require('./config/key');
+const config = require('./server/config/key');
 const cookieParser = require('cookie-parser'); // token을 cookie에 넣어준다.
 
-const { auth } = require('./middleware/auth');
+const { auth } = require('./server/middleware/auth');
 
 // 받아온 정보들을 parsing 한다.
 app.use(bodyParser.urlencoded({extended: true}));
