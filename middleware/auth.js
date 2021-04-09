@@ -1,8 +1,16 @@
+// middleware 
+// callback function이 호출되기 전에 중간에서 먼저 작업을 해주는 것이다.
+// 
+
 const { User } = require('../models/User');
 
 let auth = (req, res, next) => {
   // auth 처리를 하는 곳 
+  // auth가 왜 필요한가? 
+  // 1. 페이지 이동 때마다 로그인되었는지 안되었는지, 관리자 유저인지등을 확인한다.
+  // 2. 글을 쓰거나 지울때 권한이 있는지 확인한다.
 
+  // Server: DB에 token을 갖는다. Client: Cookie에 token을 갖는다. 그래서 계속 맞는지 check!
   // 클라이언트 쿠키에서 token을 가져옴
   let token = req.cookies.x_auth;
 
