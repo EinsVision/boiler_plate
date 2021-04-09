@@ -7,6 +7,8 @@ import {
 } from "react-router-dom";
 import './App.css';
 import LandingPage from './components/views/LandingPage/LandingPage';
+import LoginPage from './components/views/LoginPage/LoginPage';
+import RegisterPage from './components/views/LandingPage/LandingPage';
 
 
 function App() {
@@ -16,11 +18,11 @@ function App() {
       <div>
         
         <Switch>
-          <Route path="/about">
-            {/* <About /> */}
+          <Route exact path="/login">
+            <LoginPage />
           </Route>
-          <Route path="/users">
-            {/* <Users /> */}
+          <Route exact path="/register">
+            <RegisterPage />
           </Route>
           <Route exact path="/">
             <LandingPage />
