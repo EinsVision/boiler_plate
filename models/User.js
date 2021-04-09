@@ -92,9 +92,19 @@ userSchema.methods.generateToken = function(cb) {
 
 userSchema.statics.findByToken = function( token, cb) {
   const user = this;
-  // token decoding 
-  jwt.verify(token, 'secretToken', function(err, decode) {
+
+  // token decoding (복호화 과정)
+  jwt.verify(token, 'secretToken', function(err, decoded) {
+    // user id를 이용해서 user를 찾은 다음에 
+    // client에서 가져온 token과 DB에 저장된 token이 일치하는지 확인
     
+    user.findOne({ "_id": decoded, "token": token }, function( err, user) {
+      if(err) {
+        return cb(err);
+      } 
+
+      cb(null, user);
+    })
   })
 }
 
