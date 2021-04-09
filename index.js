@@ -111,6 +111,10 @@ app.get('/api/users/logout', auth, (req, res) => {
   })
 });
 
+app.get('/api/hello', (req, res) => {
+  res.send('안녕하세요 axios !!')
+})
+
 app.listen(port, () => {
   console.log(`app.listen :: Example app listening at http://localhost:${port}`)
 });

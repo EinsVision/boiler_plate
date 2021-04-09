@@ -10,13 +10,11 @@ import LandingPage from './components/views/LandingPage/LandingPage';
 import LoginPage from './components/views/LoginPage/LoginPage';
 import RegisterPage from './components/views/LandingPage/LandingPage';
 
-
 function App() {
 
   return (
     <Router>
       <div>
-        
         <Switch>
           <Route exact path="/login">
             <LoginPage />
