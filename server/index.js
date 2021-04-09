@@ -3,9 +3,9 @@
 // 2. express js download
 // 3. body-parser (client로 부터 id, email, pwd 등의 정보를 읽어 들이는 것)
 
-const express = require('express') // express module을 가져옴
-const app = express() // 새로운 express app을 만든다.
-const port = 5000
+const express = require('express'); // express module을 가져옴
+const app = express(); // 새로운 express app을 만든다.
+const port = 5000;
 
 const { User } = require("./models/User");
 const bodyParser = require("body-parser");
@@ -30,7 +30,7 @@ mongoose.connect(config.mongoURI, {
 
 app.get('/', (req, res) => {
   res.send('Hello World! from Express JS (boiler plate)')
-})
+});
 
 app.post('/api/users/register', (req, res) => {
     // 회원 가입할 때 필요한 정보들을 client 에서 가져오면 
@@ -49,7 +49,7 @@ app.post('/api/users/register', (req, res) => {
       }
       return res.status(200).json({ success: true });    
     });
-})
+});
 
 app.post('/api/users/login', (req, res) => {
   // 1. 요청된 이메일을 db에 있는지 찾는다.
@@ -82,7 +82,7 @@ app.post('/api/users/login', (req, res) => {
       })
     })
   })
-})
+});
 
 // role : 0 이면 일반 user
 // role : 0 이 아니면 관리자 user
@@ -109,9 +109,9 @@ app.get('/api/users/logout', auth, (req, res) => {
       success: true
     })
   })
-})
+});
 
 app.listen(port, () => {
   console.log(`app.listen :: Example app listening at http://localhost:${port}`)
-})
+});
 
