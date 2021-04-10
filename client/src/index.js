@@ -21,6 +21,9 @@ reportWebVitals();
 // (Redux) 는 State를 관리하는 것이다.
 // Redux 데이터 Flow (strict unidirectional data flow)
 // React Component -> Dispatch(action) -> Action -> Reducer -> Store -> React Component
+
+// 기본적으로 Redux store는 Object 형태만 받을 수 있다.
+// 그래서 Promise 형태나 Function은 받을 수 없지만,  "redux-promise", "redux-thunk" 를 사용해서 해결할 수 있다.
  
 // (Props) 는 부모 component와 자식 component 간에 주고 받는 data이고 Props는 immutable 해서 값을 바꾸고 싶다면 부모 component에서 값을 변경해 한다.
 
