@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 function RegisterPage() {
   return (
@@ -8,4 +8,4 @@ function RegisterPage() {
   )
 }
 
-export default RegisterPage
+export default RegisterPage;
