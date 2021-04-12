@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import axios from 'axios';
+import './LandingPage.css';
 
 function LandingPage() {
 
@@ -12,8 +13,8 @@ function LandingPage() {
   // CORS 정책 때문에, Cross-Origin Resource Sharing (CORS) 보안문제
   
   return (
-    <div>
-      LandingPage
+    <div className='landingPage'>
+      <h2>시작페이지</h2>
     </div>
   )
 }
