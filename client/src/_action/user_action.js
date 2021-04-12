@@ -13,3 +13,15 @@ export function loginUser(dataToSubmit) {
     // reducer에 보낸다.
   }
 }
+
+export function registerUser(dataToSubmit) {
+  const request = axios.post('/api/users/register', dataToSubmit)
+    .then(response => response.data );
+
+  return{
+    type: LOGIN_USER,
+    payload: request
+    // reducer에 보낸다.
+  }
+}
+
